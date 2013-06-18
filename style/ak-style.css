@@ -134,37 +134,18 @@
 .items div a.teachers:hover { background:url(images/teachers_hover.png) center top no-repeat; }
 
 /**
- ===========================================ROUNDABOUT======================================
+ ===========================================PATHWAYS======================================
  */
-
-
-#my_carousel{
-    margin:60px auto;
-}
-.roundabout-holder {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    height: 350px;
-    width: 500px;
-}
-.roundabout-moveable-item {
-    height: 350px;
-    width: 500px;
-    cursor: pointer;
-    background-color: white;
-    border: 1px solid lightgray;
-    text-align:center;
-    /*box-shadow: 5px 5px 5px #888888;*/
-}
-.roundabout-in-focus {
-    cursor: auto;
+.is_slider{
+    height:430px;
+    width: 100%;
 }
 
-/**
- ===========================================HIGHLIGHTED & FEATURED ITEMS======================================
- */
-.highlighted_div{
+.slider_page{
+    width:95%;
+}
+
+.highlighted_paths{
     width:45%;
     float:left;
     margin-left:10px;
@@ -174,7 +155,14 @@
     background:url(images/index_titles_back.png) top repeat-x;
 }
 
-.featured_div{
+.highlighted_paths h3{
+    color:white;
+    line-height:30px;
+    font-weight:lighter;
+    padding-left:10px;
+}
+
+.teacher_paths{
     width:45%;
     float:right;
     margin-right:10px;
@@ -182,29 +170,48 @@
     border: 1px solid #583010;
     padding:0px 10px 10px 10px;
     background:url(images/index_titles_back.png) top repeat-x;
+
 }
 
-.highlighted_div h3{
-    color:white;
-    line-height:45px;
-    font-weight:lighter;
-    padding-left:10px;
+.teacher_paths h3{
+color:white;
+line-height:30px;
+font-weight:lighter;
+padding-left:10px;
+}
+
+.slider-navigation{
+    display: block;
+    width:100%;
+    padding-left:5px;
+    margin: 0px 0px 10px 0px;
+    text-decoration: none;
+    font: bold 15px/20px 'lucida sans', 'trebuchet MS', 'Tahoma';
     
 }
+.slider-navigation a{
+    text-decoration: none;
+}
 
-.featured_div h3{
-    color:white;
-    line-height:45px;
-    font-weight:lighter;
+.slider-prev{
+    float:left;
+    padding-right:10px;
+    text-decoration:none;
+}
+
+.slider-next{
+    float:left;
     padding-left:10px;
+    text-decoration:none;
 }
 
-.highlighted_div img{
-    width:90%;
+.pager{
+    float:left;
 }
 
-.featured_div img{
-    width:90%;
+.activeSlide{
+    color:#583010 !important;
+    font-size:18px;
 }
 
 
@@ -225,11 +232,11 @@
 }
 .item-intro {
 	padding:8px 9px;
-	font-family: 'lucida sans', 'trebuchet MS', 'Tahoma';
-	font-size:12px;
+	/*font-family: 'lucida sans', 'trebuchet MS', 'Tahoma';*/
+	/*font-size:12px;*/
 }
 .item-intro h2 {
-	font-size:18px;
+	font-size:15px;
 	padding:2px 0 8px 5px;
     /*	background:url(images/item_intro_sprite.png) 0 -95px no-repeat;*/
 	line-height:1.2em;
@@ -356,7 +363,7 @@ a.secondary:hover { color:#af9a87;text-decoration:underline; }
 }
 .filter a {
 	display:block;
-	font-family : 'lucida sans', 'trebuchet MS', 'Tahoma';
+	/*font-family : 'lucida sans', 'trebuchet MS', 'Tahoma';*/
 	height:35px;
     text-decoration:none;
     color:white;
@@ -375,7 +382,7 @@ a.secondary:hover { color:#af9a87;text-decoration:underline; }
 .filter_parent a {
     color:white;
     font-weight:lighter;
-    font:20px;
+    /*font:20px;*/
     
 }
 
@@ -473,6 +480,7 @@ a.secondary:hover { color:#af9a87;text-decoration:underline; }
  ================================================================ITEM VIEW============================================
  */
 /*Left Sidebar in item*/
+
 .leftSidebarInfo {
     background: none repeat scroll 0 0 transparent;
     border-right: 1px solid black;
@@ -508,7 +516,7 @@ a.secondary:hover { color:#af9a87;text-decoration:underline; }
 {
     float:left;
     width:550px;
-    min-height: 200px;
+    /*min-height: 200px;*/
 }
 
 .itemKeywords
@@ -589,7 +597,7 @@ a.secondary:hover { color:#af9a87;text-decoration:underline; }
 .item-content > div.clearfix {
 	margin-top:45px;
 	padding-bottom:11px;
-	border-bottom:1px solid #ececec;
+	/*border-bottom:1px solid #ececec;*/
 	position:relative;
 }
 .item-content .iteminfo {
@@ -680,11 +688,12 @@ a.grflag {
 
 .access, .reportaproblem {
 	padding:35px 0 0 0;
-	margin:22px 0 0 28px;
+    margin: 2px 11px 0 28px;
 	background-position:center top;
 	background-repeat:no-repeat;
 	display:inline-block;
 	font-size:12px;
+    float:right;
 }
 
 .access{
