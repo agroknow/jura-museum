@@ -184,34 +184,42 @@ padding-left:10px;
     display: block;
     width:100%;
     padding-left:5px;
-    margin: 0px 0px 10px 0px;
-    text-decoration: none;
+    text-decoration:none;
     font: bold 15px/20px 'lucida sans', 'trebuchet MS', 'Tahoma';
     
-}
-.slider-navigation a{
-    text-decoration: none;
 }
 
 .slider-prev{
     float:left;
     padding-right:10px;
     text-decoration:none;
+    color:#583016;
 }
 
 .slider-next{
     float:left;
     padding-left:10px;
     text-decoration:none;
+    color:#583016;
 }
 
 .pager{
     float:left;
+    padding:0px;
+    padding-top:5px;
+}
+.pager a{
+    float:left;
+    text-indent:-9999px;
+	background:url(images/pager_sprite_jura.png) 3px 3px no-repeat;
+	height:13px;
+	width:13px;
+	display:inline-block;
 }
 
-.activeSlide{
-    color:#583010 !important;
-    font-size:18px;
+.pager a.activeSlide, .pager a:hover {
+	background-position:3px -20px;
+    
 }
 
 
