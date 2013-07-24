@@ -578,11 +578,12 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   }
                                                                   
                                                                   
-                                                                 
+                                                                  if(item.descriptions!=undefined){
                                                                   for(i=0,tmpSize=item.descriptions.length;i<tmpSize;i++)
                                                                   {
                                                                     if(item.descriptions[i].lang==SELECTED_LANGUAGE)
-                                                                    item.thisDescription=item.descriptions[i];
+                                                                    item.thisDescription=item.descriptions[i].value;
+                                                                  }
                                                                   }
                                                                   
                                                                   if(item.thisDescription==undefined){item.thisDescription = " There is no defined description for this language";}
@@ -592,7 +593,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   for(i=0,tmpSize=item.title.length;i<tmpSize;i++)
                                                                   {
                                                                   if(item.title[i].lang==SELECTED_LANGUAGE)
-                                                                  item.thisTitle=item.title[i];
+                                                                  item.thisTitle=item.title[i].value;
                                                                   }
                                                                   
                                                                   if(item.thisTitle==undefined){item.thisTitle = " There is no defined title for this language";}
@@ -608,23 +609,6 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   
                                                                   try {item.keywords = item.keywords.split("&#044; ");} catch(e) {}
                                                                   
-                                                                  var spt = item.title.split(",",1);
-                                                                  item.title = spt[0];
-                                                                  var length = spt[0].length;
-                                                                  
-                                                                  if (item.title[0] == '[')
-                                                                  item.title = item.title.substring(1,length);
-                                                                  else
-                                                                  item.title = item.title.substring(0,length);
-                                                                  
-                                                                  spt = item.description.split(",",1);
-                                                                  item.description=spt[0];
-                                                                  length = spt[0].length;
-                                                                  
-                                                                  if (item.description[0] == '[')
-                                                                  item.description = item.description.substring(1,length);
-                                                                  else
-                                                                  item.description =item.description.substring(0,length);
                                                                   
                                                                    item.isOdd = oddCtr;
                                                                   
@@ -769,63 +753,13 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                          }
                                                                          
                                                                          });
-                                             
-                                             
-                                             
-                                             
-    /*var names = $('language_rbo').select('ul.rbList');
-     
-     names.each(function(item){
-     
-     //var pos = item.id.indexOf(':');
-     var facet = item.id;
-     //.substring(0,pos);
-     //var langValue = item.id.substring(pos+1);
-     alert(facet);
-     if (langName[langValue]== langName[name])
-     alert("EVRHKA");
-     
-     });*/
-                                             
-                                             
+                
                                              
                                              }
                                              
                                              
                                              
-                                             
-                                             
-//                                             function loadTranslator() {
-//                                             
-//                                             var script = new Element('script',{'type':'text/javascript','src':'http://translate.google.com/translate_a/element.js?cb=googleSectionalElementInit&ug=section&hl=auto'});
-//                                             
-//                                             $('script-translator').childElements().each(function(el){el.remove();});
-//                                             $('script-translator').appendChild(script);
-//                                             
-//                                             if(google.translate) {
-//                                             new google.translate.SectionalElement({
-//                                                                                   sectionalNodeClassName: 'lodescription',
-//                                                                                   controlNodeClassName: 'control',
-//                                                                                   background: '#ffffcc'
-//                                                                                   }, 'google_sectional_element');
-//                                             }
-//                                             
-//                                             $$('.lodescription').each(function(data){
-//                                                                       var toTranslate = data.innerHTML.stripScripts().unescapeHTML().replace(/[\n\r\s]+/g, ' ').replace('Translate','');
-//                                                                       google.language.detect(toTranslate,function(result){
-//                                                                                              if (!result.error) {
-//                                                                                              if(result.language == 'en') {
-//                                                                                              data.descendants()[0].hide();
-//                                                                                              }
-//                                                                                              
-//                                                                                              }
-//                                                                                              });
-//                                                                       });
-//                                             
-//                                             
-//                                             }
-                                             
-                                             
+
                                              
                                              
                                              
@@ -868,102 +802,14 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            a({href:'javascript:void(0);', onclick: "searchByKeyword('#{key}')".interpolate({key: data})}, data);
                                                            });
                                              
-    /*
-     Jaml.render('first_title',function(data){
-     a({href:data.location,title: data.title, target: '_blank'},data.title)
-     }); */
-                                             
-//                                             Jaml.register('result', function(data){
-//                                                           div({cls:'row'},
-//                                                               
-//                                                               div({cls:'lotitle'},
-//                                                                   a({href:data.location,title: data.title, target: '_blank'},data.title)
-//                                                                   // Jaml.render('first_title',data.title)
-//                                                                   ),br(),
-//                                                               
-//                                                               div({cls:'thumb'},
-//                                                                   
-//                                                                   Jaml.render('thumb_pres',data)
-//                                                                   ,br(),
-//                                                                   div({cls:'lodescription'},
-//                                                                       div({cls:'control'}),
-//                                                                       removeHtmlTags(addEndingDescription(data.description))),br()
-//                                                                   ),
-//                                                               
-//                                                               span({cls:'keywords'},
-//                                                                    span({cls:'bold'},'Keywords: '),
-//                                                                    Jaml.render('keyword',data.keywords)
-//                                                                    )
-//                                                               
-//                                                               
-//                                                               
-//                                                               /*  div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
-//                                                                div({cls:'metacontent'},
-//                                                                'Location: ', a({href:data.location,title: data.location, target: '_blank'},data.location), br(),
-//                                                                //  'Context: ', data.context,
-//                                                                br(),
-//                                                                span({cls:'keywords'},
-//                                                                span({cls:'bold'},'Keywords: '),
-//                                                                Jaml.render('keyword',data.keywords)
-//                                                                ), br()
-//                                                                ,a({href:"http://83.212.96.219:8080/cultural/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-//                                                                
-//                                                                )
-//                                                                )*/
-//                                                               );           
-//                                                           });
 
-                                             
-                                             
-//                                             Jaml.register('resultwithoutkeywords', function(data) {
-//                                                           /* div({cls:'row'},
-//                                                            div({cls:'lotitle'},
-//                                                            a({href:data.location,title: data.title, target: '_blank'},data.title)),
-//                                                            div({cls:'snip'},
-//                                                            div({cls:'lodescription'},
-//                                                            div({cls:'control'}),
-//                                                            removeHtmlTags(addEndingDescription(data.description)))		
-//                                                            )
-//                                                            );*/
-//                                                           
-//                                                           div({cls:'row'},
-//                                                               
-//                                                               div({cls:'lotitle'},
-//                                                                   a({href:data.location,title: data.title, target: '_blank'},data.title)
-//                                                                   // Jaml.render('first_title',data.title)
-//                                                                   ),br(),
-//                                                               
-//                                                               div({cls:'thumb'},
-//                                                                   
-//                                                                   Jaml.render('thumb_pres',data)
-//                                                                   ,br(),
-//                                                                   div({cls:'lodescription'},
-//                                                                       div({cls:'control'}),
-//                                                                       removeHtmlTags(addEndingDescription(data.description))),br()
-//                                                                   ),
-//                                                               
-//                                                               
-//                                                               div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
-//                                                                   div({cls:'metacontent'},
-//                                                                       'Location: ', a({href:data.location,title: data.location, target: '_blank'},data.location), br(),
-//                                                                       //  'Context: ', data.context,
-//                                                                       br()
-//                                                                       
-//                                                                       ,a({href:"http://83.212.96.219:8080/cultural_repos/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-//                                                                       
-//                                                                       )
-//                                                                   )
-//                                                               );
-//                                                           
-//                                                           
-//                                                           });
                                              
                                              /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
                                              
                                              
                                              Jaml.register('result', function(data){
                                                            
-                                                           var keywordsToEmbed = "test_mathiou";
+                                                           var keywordsToEmbed = "";
                                                            
                                                            
                                                            var odd = "";
@@ -987,15 +833,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end for
                                                            }//end if
                                                            
-                                                           
-                                                           /*---------------------SECOND CHANGE*/
-                                                           //var imgThumb = data.format;
-//                                                           if(data.contentType[0].toUpperCase() == 'IMAGE')
-//                                                           {
-//                                                           imgThumb = data.objectUri;
-//                                                           }
-                                                           
-                                                           
+
                                                            
                                                            var thisRights = data.licenseUri;
                                                            if(data.licenseUri==undefined){thisRights == "undefined";}
@@ -1006,15 +844,17 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            article({class:'item-intro '+odd},
                                                                    header(
                                                                           h2(//img({src:imgThumb}),
-                                                                             a({href:data.location,title: data.title, target: '_blank'},data.title)),
-                                                                          section(p({cls:'item-intro-desc'}, data.description),
+                                                                             a({href:data.location,title: data.thisTitle, target: '_blank'},data.thisTitle)),
+                                                                          section(p({cls:'item-intro-desc'}, data.thisDescription),
                                                                                   aside({cls:'clearfix'},
                                                                                         div({cls:'floatleft'},
                                                                                             div({cls:'line keywords'}, span("Keywords:"), keywordsToEmbed)),
-                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
-                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
-                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))))))
+                                                                                            div({cls:'line alignright'}, a({href:"item.html?id="+data.id, cls:'moreinfo'}, "More Info")))
+                                                                                        )
+                                                                                  )
+                                                                          )
+                                                                   )
                                                            });
                                              
                                              
@@ -1025,7 +865,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            //               odd++;
                                                            //               var backgroundClass = ""
                                                            //               if(odd%2===0){backgroundClass = "odd";}
-                                                           var keywordsToEmbed = "test_mathiou 2";
+                                                           var keywordsToEmbed = "";
                                                            
                                                            var odd = "";
                                                            if(data.isOdd%2===1){odd="odd"}
@@ -1067,8 +907,8 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            article({class:'item-intro ' +odd },
                                                                    header(
                                                                           h2(img({src:imgThumb}),
-                                                                             a({href:data.location[0], title: data.title[0].value, target: '_blank'},data.title[0].value)),
-                                                                          section(p({cls:'item-intro-desc'}, data.descriptions[0].value),
+                                                                             a({href:data.location[0], title: data.thisTitle, target: '_blank'},data.thisTitle)),
+                                                                          section(p({cls:'item-intro-desc'}, data.thisDescription),
                                                                                   aside({cls:'clearfix'},
 //                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
 //                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
