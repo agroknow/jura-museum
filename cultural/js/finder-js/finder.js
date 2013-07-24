@@ -96,6 +96,7 @@ langName['eng']='English';
 langName['eng; eng']='English';
 langName['fr']= 'French';
 langName['fre']= 'French';
+langName['fra']= 'French';
 langName['el']= 'Greek';
 langName['hun']= 'Hungarian';
 langName['et']= 'Estonian';
@@ -549,28 +550,28 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                   
                                                                   //alert(JSON.stringify(item));
                                                                   
-                                                                  if(item.format[0]!=undefined){
-                                                                  if (item.format[0].indexOf('pdf') != -1)
+                                                                  if(item.format!=undefined && item.format[0].value!=undefined){
+                                                                  if (item.format[0].value.indexOf('pdf') != -1)
                                                                   item.format='images/icons/pdf.png';
-                                                                  else if (item.format[0].indexOf('powerpoint') != -1)
+                                                                  else if (item.format[0].value.indexOf('powerpoint') != -1)
                                                                   item.format='images/icons/ppt.png';
-                                                                  else if (item.format[0].indexOf('video') != -1)
+                                                                  else if (item.format[0].value.indexOf('video') != -1)
                                                                   item.format='images/icons/video.png';
-                                                                  else if (item.format[0].indexOf('zip') != -1)
+                                                                  else if (item.format[0].value.indexOf('zip') != -1)
                                                                   item.format='images/icons/zip.png';
-                                                                  else if (item.format[0].indexOf('audio') != -1)
+                                                                  else if (item.format[0].value.indexOf('audio') != -1)
                                                                   item.format='images/icons/audio.png';
-                                                                  else if ((item.format[0].indexOf('text') != -1) ||(item.format[0].indexOf('multipart') != -1) )
+                                                                  else if ((item.format[0].value.indexOf('text') != -1) ||(item.format[0].value.indexOf('multipart') != -1) )
                                                                   item.format='images/icons/text.png';
-                                                                  else if ((item.format[0].indexOf('xml') != -1) )
+                                                                  else if ((item.format[0].value.indexOf('xml') != -1) )
                                                                   item.format='images/icons/xml.png';
-                                                                  else if (item.format[0].indexOf('image') != -1)
+                                                                  else if (item.format[0].value.indexOf('image') != -1)
                                                                   item.format='images/icons/image.png';
                                                                   //item.format=item.thumbnailUri;
                                                                   //item.format=item.location;
-                                                                  else if ((item.format[0].indexOf('word')!= -1) || (item.format[0].indexOf('wordprocessingml')!= -1))
+                                                                  else if ((item.format[0].value.indexOf('word')!= -1) || (item.format[0].value.indexOf('wordprocessingml')!= -1))
                                                                   item.format='images/icons/word.png';
-                                                                  else if ((item.format[0].indexOf('application')!= -1))
+                                                                  else if ((item.format[0].value.indexOf('application')!= -1))
                                                                   item.format='images/icons/application.png';
                                                                   else
                                                                   item.format='images/icons/application.png';
@@ -770,62 +771,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                                          
                                                                          });
                                              
-                                             
-                                             
-                                             
-                                             /*var names = $('language_rbo').select('ul.rbList');
-                                              
-                                              names.each(function(item){
-                                              
-                                              //var pos = item.id.indexOf(':');
-                                              var facet = item.id;
-                                              //.substring(0,pos);
-                                              //var langValue = item.id.substring(pos+1);
-                                              alert(facet);
-                                              if (langName[langValue]== langName[name])
-                                              alert("EVRHKA");
-                                              
-                                              });*/
-                                             
-                                             
-                                             
+
                                              }
-                                             
-                                             
-                                             
-                                             
-                                             
-                                             //                                             function loadTranslator() {
-                                             //
-                                             //                                             var script = new Element('script',{'type':'text/javascript','src':'http://translate.google.com/translate_a/element.js?cb=googleSectionalElementInit&ug=section&hl=auto'});
-                                             //
-                                             //                                             $('script-translator').childElements().each(function(el){el.remove();});
-                                             //                                             $('script-translator').appendChild(script);
-                                             //
-                                             //                                             if(google.translate) {
-                                             //                                             new google.translate.SectionalElement({
-                                             //                                                                                   sectionalNodeClassName: 'lodescription',
-                                             //                                                                                   controlNodeClassName: 'control',
-                                             //                                                                                   background: '#ffffcc'
-                                             //                                                                                   }, 'google_sectional_element');
-                                             //                                             }
-                                             //
-                                             //                                             $$('.lodescription').each(function(data){
-                                             //                                                                       var toTranslate = data.innerHTML.stripScripts().unescapeHTML().replace(/[\n\r\s]+/g, ' ').replace('Translate','');
-                                             //                                                                       google.language.detect(toTranslate,function(result){
-                                             //                                                                                              if (!result.error) {
-                                             //                                                                                              if(result.language == 'en') {
-                                             //                                                                                              data.descendants()[0].hide();
-                                             //                                                                                              }
-                                             //
-                                             //                                                                                              }
-                                             //                                                                                              });
-                                             //                                                                       });
-                                             //
-                                             //
-                                             //                                             }
-                                             
-                                             
+    
                                              
                                              
                                              
@@ -868,95 +816,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            a({href:'javascript:void(0);', onclick: "searchByKeyword('#{key}')".interpolate({key: data})}, data);
                                                            });
                                              
-                                             /*
-                                              Jaml.render('first_title',function(data){
-                                              a({href:data.location,title: data.title, target: '_blank'},data.title)
-                                              }); */
-                                             
-                                             //                                             Jaml.register('result', function(data){
-                                             //                                                           div({cls:'row'},
-                                             //
-                                             //                                                               div({cls:'lotitle'},
-                                             //                                                                   a({href:data.location,title: data.title, target: '_blank'},data.title)
-                                             //                                                                   // Jaml.render('first_title',data.title)
-                                             //                                                                   ),br(),
-                                             //
-                                             //                                                               div({cls:'thumb'},
-                                             //
-                                             //                                                                   Jaml.render('thumb_pres',data)
-                                             //                                                                   ,br(),
-                                             //                                                                   div({cls:'lodescription'},
-                                             //                                                                       div({cls:'control'}),
-                                             //                                                                       removeHtmlTags(addEndingDescription(data.description))),br()
-                                             //                                                                   ),
-                                             //
-                                             //                                                               span({cls:'keywords'},
-                                             //                                                                    span({cls:'bold'},'Keywords: '),
-                                             //                                                                    Jaml.render('keyword',data.keywords)
-                                             //                                                                    )
-                                             //
-                                             //
-                                             //
-                                             //                                                               /*  div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
-                                             //                                                                div({cls:'metacontent'},
-                                             //                                                                'Location: ', a({href:data.location,title: data.location, target: '_blank'},data.location), br(),
-                                             //                                                                //  'Context: ', data.context,
-                                             //                                                                br(),
-                                             //                                                                span({cls:'keywords'},
-                                             //                                                                span({cls:'bold'},'Keywords: '),
-                                             //                                                                Jaml.render('keyword',data.keywords)
-                                             //                                                                ), br()
-                                             //                                                                ,a({href:"http://83.212.96.219:8080/cultural/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-                                             //
-                                             //                                                                )
-                                             //                                                                )*/
-                                             //                                                               );
-                                             //                                                           });
-                                             
-                                             
-                                             
-                                             //                                             Jaml.register('resultwithoutkeywords', function(data) {
-                                             //                                                           /* div({cls:'row'},
-                                             //                                                            div({cls:'lotitle'},
-                                             //                                                            a({href:data.location,title: data.title, target: '_blank'},data.title)),
-                                             //                                                            div({cls:'snip'},
-                                             //                                                            div({cls:'lodescription'},
-                                             //                                                            div({cls:'control'}),
-                                             //                                                            removeHtmlTags(addEndingDescription(data.description)))
-                                             //                                                            )
-                                             //                                                            );*/
-                                             //
-                                             //                                                           div({cls:'row'},
-                                             //
-                                             //                                                               div({cls:'lotitle'},
-                                             //                                                                   a({href:data.location,title: data.title, target: '_blank'},data.title)
-                                             //                                                                   // Jaml.render('first_title',data.title)
-                                             //                                                                   ),br(),
-                                             //
-                                             //                                                               div({cls:'thumb'},
-                                             //
-                                             //                                                                   Jaml.render('thumb_pres',data)
-                                             //                                                                   ,br(),
-                                             //                                                                   div({cls:'lodescription'},
-                                             //                                                                       div({cls:'control'}),
-                                             //                                                                       removeHtmlTags(addEndingDescription(data.description))),br()
-                                             //                                                                   ),
-                                             //
-                                             //
-                                             //                                                               div({cls:'moremeta'}, p(),span({cls:'heading'},'more info'),
-                                             //                                                                   div({cls:'metacontent'},
-                                             //                                                                       'Location: ', a({href:data.location,title: data.location, target: '_blank'},data.location), br(),
-                                             //                                                                       //  'Context: ', data.context,
-                                             //                                                                       br()
-                                             //
-                                             //                                                                       ,a({href:"http://83.212.96.219:8080/cultural_repos/services/oai?verb=GetRecord&metadataPrefix=oai_lom&identifier="+data.metaMetadataId, title: "View all meta", target: '_blank'},"View all meta"), br()
-                                             //
-                                             //                                                                       )
-                                             //                                                                   )
-                                             //                                                               );
-                                             //
-                                             //
-                                             //                                                           });
+                          
                                              
                                              /*-----------------------------RENDER RESULT LISTING ITEMS--------------------------------*/
                                              
@@ -1071,11 +931,12 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end if
                                                            
                                                            
+                                                           if(data.objectUri!=undefined && data.objectUri[0]==undefined){data.objectUri[0]="#"; }
                                                            var imgThumb = data.format;
-                                                           if(data.contentType[0].toUpperCase() == 'IMAGE')
-                                                           {
-                                                           imgThumb = data.objectUri[0];
-                                                           }
+//                                                           if(data.contentType[0].toUpperCase() == 'IMAGE' && data.objectUri[0]!=undefined)
+//                                                           {
+//                                                           imgThumb = data.objectUri[0];
+//                                                           }
                                                            
                                                            //title
                                                            var thisTitle = "undefined";
@@ -1106,14 +967,13 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                                                            }//end if
                                                            
                                                            
+                                                           
                                                            article({class:'item-intro ' +odd },
                                                                    header(
                                                                           h2(img({src:imgThumb}),
-                                                                             a({href:data.objectUri[0], title: thisTitle, target: '_blank'},thisTitle)),
+                                                                             a({href:"#", title: thisTitle, target: '_blank'},thisTitle)),
                                                                           section(p({cls:'item-intro-desc'}, thisDescription),
                                                                                   aside({cls:'clearfix'},
-                                                                                        //                                                                                        div({cls:'language'}, span("Creative commons licence:"), thisRights),
-                                                                                        //                                                                                        div({cls:'language'}, span("Rights:"), thisRights2),
                                                                                         div({cls:'floatright'},
                                                                                             div({cls:'line alignright'}, a({href:"item.html?id="+data.id[0], cls:'moreinfo'}, "More Info")))))))});
                                              
