@@ -4,7 +4,7 @@ function getItemJSONP(itemID)
 {
     
     urlTemp = "http://collections.natural-europe.eu/repository/api/ariadne/restp?json=%7B%22clause%22%3A%20%5B%7B%22language%22%3A%20%22VSQL%22%2C%20%22expression%22%3A%20%22"+itemID+"%22%7D%5D%2C%20%22resultInfo%22%3A%20%22display%22%2C%20%22resultListOffset%22%3A%200%2C%20%22resultListSize%22%3A%206%2C%20%22idListOffset%22%3A%200%2C%20%22uiLanguage%22%3A%20%22en%22%2C%20%22facets%22%3A%20%5B%22provider%22%2C%20%22language%22%2C%20%22format%22%2C%20%22classification%22%5D%2C%20%22idListSize%22%3A%206%2C%20%22resultFormat%22%3A%20%22json%22%2C%20%22resultSortkey%22%3A%20%22%22%7D&engine=InMemory";
-    //alert(urlTemp);
+
     
     jQuery.ajax({
                 url: urlTemp,
@@ -20,45 +20,26 @@ function getItemJSONP(itemID)
                 var tmp = JSON.parse(thisJson);
                 var record = tmp.result.metadata[0];
                 
+                console.log(tmp);
+                
                 //alert(thisJson);
                 
                 //left_sidebar
                 
                 //-//collection
                 if(record.collectionId!=undefined){
-                if (record.collectionId.indexOf('HNHM ') != -1){
-                record.collectionId = record.collectionId.split('HNHM ')[1];
-                }
+                
                 document.getElementById('collection').innerHTML = record.collectionId;}
                 
                 //-//classification
                 if(record.classification!=undefined){
                  jQuery('#classification').append(record.classification[0] );
-                
-//                var tempClassif = Object.keys(record.classification);
-//                for(var i=0; i <tempClassif.length; i++)
-//                {
-//                if(record.classification[tempClassif[i]]!=undefined){
-//                jQuery('#classification').append(record.classification[tempClassif[i]] );
-//                
-//                if(i!=tempClassif.length-1){ jQuery('#classification').append(", "); }
-//                
-//                }
-//                }
                 }
                 
                 //-//Scientific Name
                 if(record.scientificName!=undefined){
                  jQuery('#scientific_name').append(record.scientificName[0].value);
-//                var tempScienName = Object.keys(record.scientificName);
-//                for(var i=0; i <tempScienName.length; i++)
-//                {
-//                if(record.classification[tempClassif[i]]!=undefined){
-//                jQuery('#scientific_name').append(record.scientificName[tempScienName[i]].value);
-//                if(i!=tempScienName.length-1){ jQuery('#scientific_name').append(", "); }
-//                }
-//                }
-//                
+
                 }
                 
                 //-//Spatial Coverage
@@ -80,17 +61,18 @@ function getItemJSONP(itemID)
                 }
                 
                 //-//date created
-                
+                console.log("*");
                 if(record.created!=undefined)
                 {
-                jQuery('#date_created').append(record.created);
-                
-                //                var testDate = Object.keys(record.created)
-                //                for(var i=0;i<testDate.length;i++){
-                //                jQuery('#date_created').append(record.created[testDate[i]]);
-                //                if(i!=testDate.length-1){ jQuery('#date_created').append(", "); }
-                //                }
-                
+                	if(record.created instanceof Object == true)
+                	{
+	                	jQuery('#date_created').append(record.created[0].value);
+                	}
+                	else
+                	{
+	                	jQuery('#date_created').append(record.created);
+                	}
+		            
                 }
                 
                 

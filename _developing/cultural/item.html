@@ -63,7 +63,7 @@
     <script type="text/javascript">
         function getItem()
         {
-            //getItemJSONP('http://83.212.96.219:8080/akifRetriever/getAKIF?ids='+location.search.split("=")[1]);
+            
             getItemJSONP(location.search.split("=")[1]);
         }
         </script>
@@ -271,7 +271,8 @@ Start</span>
                             <span class="item_value" id="collection"></span>
                         </li>
                         <li  >
-                            <span class ="titlesOnLeft">Speciment</span>
+                            <span class ="item_label">Specimen:</span>
+                            <span  class="item_value" id="specimen"></span>
                         </li>
                         <li >
                             <span class="item_label">Classification:</span>
