@@ -229,24 +229,7 @@ function initializeFinder(){
 		div.push('<div id="search_results"></div>');
 		div.push('</div>');
 		$('insert_results').update(div.join(''));
-        //		if (!$('insert_moreResults')) {
-        //			$('body').insert('<div id="insert_moreResults" style="display:none"></div>');
-        //		}
-        //		var div = [];
-        //		div.push('<div id="moreResults"><h3>More Results</h3>');
-        //		for (var i=0;i<EXT_SOURCES.length;i++){
-        //			var es = EXT_SOURCES[i];
-        //			var esn = AVAILABLE_ES[es]['name'];
-        //			div.push('<div id="'+es+'_search" class="ext-res-div">');
-        //			div.push('<a class="ext-res" onclick="getExternalSourceResult(\''+es+'\');" href="javascript:void(0)" title="'+esn+'">'+esn+'</a>');
-        //			div.push('<span id="'+es+'_indicator" style="display:none"><img src="'+ROOT_URL+'common/images/indicator.gif"></span>');
-        //			div.push('<span id="'+es+'_results"></span>');
-        //			div.push('</DIV>');
-        //		}
-        //		div.push('</DIV>');
-        // 		$('insert_moreResults').update(div.join(''));
-        
-        
+ 
         
         
 		initializeJamlTemplates();
@@ -430,12 +413,7 @@ function parseQueryString(initUpdate){
         // add the below to code @ github. It is to limit the results only for OE collection //
         
     }
-    //previous one
-    //    {
-    //        clauses.push({language:'VSQL',expression:plainText});
-    //    }
-    
-    
+
     
     
     if(spq.length > 1){
@@ -515,30 +493,30 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         $('noResults').hide();
                         
                         new Ajax.JSONRequest(SERVICE_URL, {
-                                             callbackParamName: "callback",
-                                             method: 'get',
-                                             parameters: {
-                                             json: Object.toJSON(request),
-                                             engine: 'InMemory'
-                                             },
-                                             onSuccess: function(transport) {
-                                             var result = transport.responseText.evalJSON(true).result;
-                                             
-                                             // alert(JSON.stringify(result));
-                                             
-                                             $('search_results').update('');
-                                             $('noResults').hide();
-                                             
-                                             $('search_status').update('Processing time: ' + (result.processingTime/1000).toFixed(3) + ' seconds');
-                                             
-                                             if(initUpdate) {
-                                             $('searchMessage').insert('<h3 align="center">Available: '+formatInteger(result.nrOfResults,',')+' learning resources</h3>');
-                                             } else {
-                                             $('search_terms').update('Results: ');
-                                             $('searchMessage').update('');
-                                             if(result.metadata.size() == 0){
-                                             $('noResults').show();
-                                             }
+                             callbackParamName: "callback",
+                             method: 'get',
+                             parameters: {
+                             json: Object.toJSON(request),
+                             engine: 'InMemory'
+                             },
+                             onSuccess: function(transport) {
+                             var result = transport.responseText.evalJSON(true).result;
+                             
+                             // alert(JSON.stringify(result));
+                             
+                             $('search_results').update('');
+                             $('noResults').hide();
+                             
+                             $('search_status').update('Processing time: ' + (result.processingTime/1000).toFixed(3) + ' seconds');
+                             
+                             if(initUpdate) {
+                             $('searchMessage').insert('<h3 align="center">Available: '+formatInteger(result.nrOfResults,',')+' learning resources</h3>');
+                             } else {
+                             $('search_terms').update('Results: ');
+                             $('searchMessage').update('');
+                             if(result.metadata.size() == 0){
+                             $('noResults').show();
+                             }
                                              
      /*--------------------CREATE EVERY ITEM BEFORE CALL RENDERING WITH JAML-------------------------*/
      var oddCtr = 0; /*counter to add the odd style in listing*/
@@ -547,7 +525,7 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                           oddCtr++;
                           item.isOdd = oddCtr;
                           
-                          console.log(JSON.stringify(item));
+                          console.log(item);
                           
                           if(item.format!=undefined && item.format[0].value!=undefined){
                           if (item.format[0].value.indexOf('pdf') != -1)
@@ -703,10 +681,9 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
                         
                         facetSlide();
                         
-                        selectedFacets.each(function(item,index){
-                                            $(item.id).addClassName('facet-selected');
-                                            
-                                            });
+	                        selectedFacets.each(function(item,index){
+	                            $(item.id).addClassName('facet-selected');
+	                        });
                         }
                         //webSnapr.init();
                         //$('header').scrollTo();
@@ -962,34 +939,18 @@ function findMaterials(start,numberResults,needsUpdate,initUpdate){
      
 
      
-     
-     Jaml.register('rbcriteria', function(data) //rest facets
-                   {
-                   
-                   
-                   //###
-                   //alert(data.val);
-                   
-                   //removing HNHM from facets
-                   var label = data.val;
-                   
-                   a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
-                   
-                   
-                   });
-     
-     
-     Jaml.register('rbcriteria2', function(data) //language facet
-                   {
-                   
-                   
-                   
-                   
-                   
-                   a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
-                   
-                
-                   });
+  ////-----RENDER FACETS ----.///   
+Jaml.register('rbcriteria', function(data) //rest facets
+{
+   var label = data.val;
+   a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick:"toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val,parent: data.field})}, span(label), span({cls:'total'}, data.count));
+});
+
+
+Jaml.register('rbcriteria2', function(data) //language facet
+{
+       a({href:'#', id: data.field + ':' + data.val, title: data.val, onclick: "toggleFacetValue('#{id}','#{parent}')".interpolate({id: data.field + ':' + data.val, parent: data.field})}, span(langName[data.val]), span({cls:'total'}, data.count ));
+});
      
      
      /*------------------------------*/

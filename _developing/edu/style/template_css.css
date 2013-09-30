@@ -787,6 +787,12 @@ div.syndicate div {
 	background: url(../images/mainwrap-right-bg.gif) repeat-y top right;
 }*/
 
+#ja-container
+{
+	background:url(images/body_back.png) !important;
+}
+
+
 #ja-containerwrap-f {
 	clear: both;
 	background: none;
@@ -818,10 +824,12 @@ div.syndicate div {
 	background: none;
 }
 
+/*
 #ja-mainbody, #ja-mainbody-fr {
 	float: right;
 	width: 80%;
 }
+*/
 
 #ja-mainbody #ja-contentwrap {
 	float: left;
