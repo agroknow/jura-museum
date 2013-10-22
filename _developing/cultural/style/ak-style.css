@@ -1,7 +1,29 @@
-/**
+/** GENERAL 
  brown:  #583010;
- lightbrown:#af9a87;
- ===========================================SEARCH BOX ======================================
+ lightbrown:#af9a87;*/
+
+.link_to_general_finder
+{
+	border-bottom:2px solid #583010;
+	text-align:center;
+	width:50%;
+	margin:30px auto;
+	font-size: 1.2em;
+}
+
+.link_to_general_finder a
+{
+	font-size: 1.2em;
+	text-decoration: none;
+	color:#333;
+}
+
+.link_to_general_finder a:hover
+{
+	color:#583010;
+}
+
+/** ===========================================SEARCH BOX ======================================
  */
 .cf:before, .cf:after{
     content:"";
